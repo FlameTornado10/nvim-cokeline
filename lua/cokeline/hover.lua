@@ -238,12 +238,11 @@ local function on_drag(pos)
 
     -- if we're not dragging yet or we're dragging the same buffer, start dragging
     if M.dragging() == current.bufnr or not M.dragging() then
-      M.set_dragging(current.bufnr)
+      M.set_dragging(vim.api.nvim_get_current_buf())
       return
     end
 
-    -- dragged buffer
-    local dragged_buf = buffers.get_buffer(M.dragging())
+    local dragged_buf = buffers.get_buffer(vim.api.nvim_get_current_buf())
     if not dragged_buf then
       return
     end
